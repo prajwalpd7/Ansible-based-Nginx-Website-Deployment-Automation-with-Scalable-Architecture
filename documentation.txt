@@ -1,0 +1,63 @@
+# Ansible-based Nginx Website Deployment Automation
+
+This repository contains Ansible playbooks and configuration files for automating the deployment of Nginx websites.
+
+Introduction:
+This documentation highlights my experience and knowledge in using Ansible for automating the deployment of Nginx websites. It covers the architecture and design considerations, steps performed to install Nginx, start the Nginx service, and deploy a static website using Ansible playbooks. Additionally, it includes key files such as the inventory configuration, Ansible Tower, and facts.
+
+Technologies Used:
+
+Ansible
+Nginx
+Linux (Ubuntu)
+
+Architecture and Design:
+
+Designed a scalable architecture to manage different environments (dev, prod) and enable remote updating and managing configurations.
+Utilized Ansible's inventory file (hosts) to define server configurations and group them based on environments (devserver, prodserver).
+Configured variables (ansible_python_interpreter, ansible_user, ansible_ssh_private_key_file) for each server group in the inventory file.
+
+## Architecture Diagram:
+
+[Dev Env]
+server_1 ansible_host=13.126.114.7
+server_2 ansible_host=65.2.189.154
+
+[Dev Env:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/keys/ansible-master-key.pem
+
+[Prod Env]
+server_3 ansible_host=13.126.178.4
+
+[Prod Env:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/keys/ansible-master-key.pem
+
+
+
+Installing Nginx:
+
+Developed an Ansible playbook (nginx_playbook.yml) to install Nginx on the target servers.
+Utilized the apt module to ensure the latest version of Nginx (state: latest).
+Employed the service module to start the Nginx service and enable it for automatic startup.
+Deploying Static Website:
+
+Enhanced the playbook to include a task for deploying a static website.
+Utilized the copy module to transfer the index.html file to the /var/www/html directory on the servers.
+Ensured appropriate permissions and ownership for the website files.
+
+Ansible Tower:
+
+Leveraged Ansible Tower for centralized management, scheduling, and monitoring of Ansible playbooks.
+Created job templates in Ansible Tower to execute the Nginx website deployment playbooks.
+Facts Gathering:
+
+Utilized Ansible's facts gathering feature to collect information about the target servers.
+Gathered system facts such as IP addresses, disk space, and CPU details to aid in troubleshooting and decision-making.
+
+Conclusion:
+This project allowed me to gain extensive experience in automating Nginx website deployments using Ansible. By implementing a scalable architecture and utilizing Ansible playbooks, I successfully installed Nginx, started the Nginx service, and deployed a static website on the target servers. The integration with Ansible Tower and the utilization of facts gathering further enhanced the efficiency and management of the deployment process. This experience has strengthened my proficiency in Ansible, Linux administration, web server management, and architecture design.
+

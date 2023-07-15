@@ -1,0 +1,10 @@
+-
+  name: Dates Playbook
+  hosts: devserver
+  tasks: 
+    - name: Show data
+      command: date
+
+    - name: Show uptime again 
+      command: uptime
+
